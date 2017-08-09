@@ -3,7 +3,7 @@
   <head>
     <title>SetApp</title>
     <%= csrf_meta_tags %>
-
+    <link rel="stylesheet" href="https://unpkg.com/blaze">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,5 +12,6 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    <button type="button">Button
   </body>
 </html>
