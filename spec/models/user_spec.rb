@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "user attributes" do
+    # let!(:user) { user = FactoryGirl.create(:user) }
+
     it "has a username" do
       user = FactoryGirl.create(:user)
-      expect(user.username).to eq("thisisusername")
+      expect(user).to eq("thisisusername")
     end
 
     it "has a email" do
-      user = FactoryGirl.create(:user)
       expect(user.email).to eq("email@example.com")
     end
   end
@@ -39,4 +40,13 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "user associations" do
+    it "has many games" do
+      t = user.reflect_on_association(:game)
+      expect(t.macro).to eq(:has_many)
+    end
+  end
+
+
 end
