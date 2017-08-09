@@ -1,28 +1,22 @@
-<h1>Set Game</h1>
-
-<button class="c-button u-super"><%= link_to "play SET!", new_game_path %></button>
-
-<h2>Top Scores</h2>
+<h2><%=current_user.username %>'s Stats</h2>
 <table class = "c-table" >
   <caption class="c-table__caption">Basic table</caption>
   <thead class="c-table__head">
     <tr class="c-table__row c-table__row--heading">
-      <th class="c-table__cell">Username</th>
       <th class="c-table__cell">Sets</th>
       <th class="c-table__cell">Total Time</th>
     </tr>
   </thead>
   <tbody class="c-table__body">
-    <% @games.each do |game| %>
-    <% user = GameHelper.find_user(game) %>
+    <% @user.games.each do |game| %>
     <tr class="c-table__row">
-      <td class="c-table__cell"> <%= user.username %></td>
       <td class="c-table__cell"><%= game.sets %></td>
-      <td class="c-table__cell"><%= game.total_time %> seconds</td>
+      <td class="c-table__cell"><%= game.total_time %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
 
+<button class="c-button c-button--info"><%= link_to 'Edit Your Profile', edit_user_registration_path %></button>
 
