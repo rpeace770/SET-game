@@ -1,0 +1,2 @@
+# SET-game
+Play SET!
