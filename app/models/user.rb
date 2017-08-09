@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :games
+
+  validates :username, presence: { message: "add a username! "}
+  validates :email, presence: { message: "add a email! "}
 end

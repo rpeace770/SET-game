@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Game, type: :model do
-  before(:each) { game = FactoryGirl.create(:game) }
+  let(:game) { FactoryGirl.create(:game) }
 
   describe "game attributes" do
     it "has a number of sets" do
