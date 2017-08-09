@@ -1,24 +1,24 @@
 require 'rails_helper'
 
-describe GamesController do
+describe UsersController do
   # let!(:game) { Game.create!(user_throw: Game::THROWS.sample) }
 
-  describe "GET #index" do
-    it "responds with status code 200" do
-      get :index
-      expect(response.status).to eq 200
-    end
+  # describe "GET #index" do
+  #   it "responds with status code 200" do
+  #     get :index
+  #     expect(response.status).to eq 200
+  #   end
 
-    it "displays the top 10 games on homepage" do
-      get :index
-      expect(assigns(:games)).to eq (Game.top_ten)
-    end
+  #   it "displays the top 10 games on homepage" do
+  #     get :index
+  #     expect(assigns(:games)).to eq (Game.top_ten)
+  #   end
 
-    it "renders the :index template" do
-      get :index
-      expect(response).to render_template(:index)
-    end
-  end
+  #   it "renders the :index template" do
+  #     get :index
+  #     expect(response).to render_template(:index)
+  #   end
+  # end
 
   # describe "GET #show" do
   #   it "responds with status code 200" do
