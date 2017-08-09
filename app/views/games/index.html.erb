@@ -1,2 +1,12 @@
+<h1>Set Game</h1>
 
 <button class="c-button u-super">hello apphia!!!!!!!!!!!!!!!!!!!!!</button>
+
+<h2>Top Scores</h2>
+<% @games.each do |game| %>
+  <% user = GameHelper.find_user(game) %>
+  <%= user.username %>
+  <%= game.sets %>
+  <%= game.total_time %>
+<% end %>
+
