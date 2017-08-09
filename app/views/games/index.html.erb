@@ -1,0 +1,10 @@
+<h1>Set Game</h1>
+
+<!-- Add button for play game -->
+
+<% @games.each do |game| %>
+  <% user = GameHelper.find_user(game) %>
+  <%= user.username %>
+  <%= game.sets %>
+  <%= game.total_time %>
+<% end %>
