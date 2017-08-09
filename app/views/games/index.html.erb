@@ -2,6 +2,7 @@
 
 <!-- Add button for play game -->
 
+<h2>Top Scores</h2>
 <% @games.each do |game| %>
   <% user = GameHelper.find_user(game) %>
   <%= user.username %>

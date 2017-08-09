@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
   def index
-    @games = Game.all
+    @games = Game.order("sets DESC").limit(10)
   end
 
   def new
