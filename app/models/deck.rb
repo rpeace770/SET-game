@@ -16,7 +16,7 @@ class Deck
       fills.each do |fill|
         numbers.each do |number|
           shapes.each do |shape|
-            @cards << Card.new(color, shape, number, fill)
+            @cards << Card.create(color, shape, number, fill)
           end
         end
       end

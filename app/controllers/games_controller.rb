@@ -13,6 +13,7 @@ class GamesController < ApplicationController
       deck = Deck.new
       deck.make_deck
       @current_cards = deck.draw_cards(12)
+
       # possibly add error functionality
 
       # make a partial that uses each card in the cells table
@@ -30,7 +31,6 @@ class GamesController < ApplicationController
   end
 
   def create
-    binding.pry
     new_card_array = []
 
     new_card_array << Card.find(params[:array][0])
@@ -43,6 +43,21 @@ class GamesController < ApplicationController
       render json: { thing: result.to_s }
     else
       "poop"
+    end
+  end
+
+  def checker
+    binding.pry
+    if @deck.no_sets_left(@current_cards)
+      if @current_cards.length == 12
+        @deck.draw_cards(3)
+      elsif @current_cards.length == 15
+        @deck.replace_cards(@current_cards)
+      else
+        puts "Something is wrong."
+      end
+    else # if there are sets available
+      "YOU'RE STUPID"
     end
   end
 
