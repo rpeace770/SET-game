@@ -8,5 +8,6 @@ class CreateCards < ActiveRecord::Migration[5.0]
       t.string    :url
 
       t.timestamps
+    end
   end
 end
