@@ -4,6 +4,6 @@
 
 <main role="main" class="container">
 
-<%= render 'board' %>
+  <%= render partial: 'board', locals: { cards: @current_cards }  %>
 
 </main>
