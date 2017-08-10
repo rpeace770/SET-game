@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Game, type: :model do
-  let(:game) { FactoryGirl.create(:game) }
+RSpec.describe Deck, type: :model do
+  let(:deck) { Deck.new }
 
   describe "game attributes" do
     it "has a number of sets" do
@@ -11,7 +11,6 @@ RSpec.describe Game, type: :model do
     it "has an end time" do
       pendingexpect(user.end_time).to eq("email@example.com")
     end
-
     it "has a user" do
       expect(user.user_id).to eq(1)
     end

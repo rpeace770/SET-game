@@ -23,6 +23,7 @@ class Deck
     end
   end
 
+# this returns the cards that are on the game board
   def draw_cards(number)
     @cards.shuffle!
     return @cards.slice!(0, number)
@@ -69,6 +70,14 @@ class Deck
     no_sets
   end
 
+  # if there are sets, return a message
+  # else there are no sets and 12, draw three cards(draw cards method)
+  # else there are no sets and 15, replace cards method
+
+  def replace_cards(displayed_cards)
+    displayed_cards.pop(3)
+    displayed_cards << draw_cards(3)
+  end
   # user click button thinking there are no more sets
   # if there are no more sets, like the user thinks, then we need to add 3 more cards if there are 12
     # but if there are 15 cards on screen, we need to remove 3 and add 3 more (if there are cards left in deck to put out)
@@ -87,8 +96,8 @@ class Deck
   # when the button is pushed
     # call no_set_left method
         # if true
-          displayed_cards.pop(3)
-          displayed_cards << draw_cards(3)
+          # displayed_cards.pop(3)
+          # displayed_cards << draw_cards(3)
       # else
         # you're stupid
       # end
@@ -97,9 +106,8 @@ class Deck
 
 end
 
-deck = Deck.new
-deck.make_deck
-x = deck.draw_cards(12)
-y = deck.no_sets_left(x)
-binding.pry
+# deck = Deck.new
+# deck.make_deck
+# x = deck.draw_cards(12)
+# y = deck.no_sets_left(x)
 
