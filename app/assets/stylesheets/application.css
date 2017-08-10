@@ -23,6 +23,7 @@
 }
 
 body {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   padding-bottom: 4em;
 }
@@ -108,4 +109,8 @@ button {
 
 .round-bottom-right {
   border-bottom-right-radius: 1em;
+}
+
+.c-nav_content {
+
 }
