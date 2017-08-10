@@ -5,17 +5,12 @@ class GamesController < ApplicationController
   end
 
   def new
-    # if no user has logged in, then we need to create an anonymous account so that a game can be created
-    # if !current_user
-    #   random_user = AnonymousUserHelper.anonymous
-    #   session[:user_id] = random_user.id
-    # end
-    # no access to deck
 
-    if session[:game_id]
-      binding.pry
-      @game = Game.find(session[:game_id])
-    else
+    # if session[:game_id]
+    #   binding.pry
+    #   @game = Game.find(session[:game_id])
+    #   # no access to deck, when will we get routed here?
+    # else
       if current_user
         @game = Game.create!(:user_id => current_user.id )
       else
@@ -36,7 +31,7 @@ class GamesController < ApplicationController
       # give list items an id easier to identify
       # click events on specific list ids
       #
-    end
+    # end
     # @current_cards = session starts with 12 cards
     # user picks 3 cards (click events)
     # reset session as ajax always function
@@ -62,11 +57,12 @@ class GamesController < ApplicationController
 
   def checker
     binding.pry
-    if @deck.no_sets_left(@current_cards)
+    # from ajax, get card ids and find Card
+    if deck.no_sets_left(@current_cards)
       if @current_cards.length == 12
-        @deck.draw_cards(3)
+        deck.draw_cards(3)
       elsif @current_cards.length == 15
-        @deck.replace_cards(@current_cards)
+        deck.replace_cards(@current_cards)
       else
         puts "Something is wrong."
       end

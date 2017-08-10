@@ -7,6 +7,7 @@ $(document).ready(function(){
     console.log($button)
     console.log($("#1"))
     console.log($("#displayed-cards"))
+
     $.ajax({
       url: "/games/checker",
       type: "get"
