@@ -28,6 +28,7 @@ body {
   padding-bottom: 4em;
 }
 
+
 button {
   color: white;
   background-color: #19abb5;
@@ -74,7 +75,7 @@ button {
   display: block;
   width: 33%;
   float: left;
-  height: 0;
+  height: 159px;
   padding-bottom: 25%;
   background-color: #c8c8c8;
   margin: 0;
