@@ -38,11 +38,15 @@ class GamesController < ApplicationController
     new_card_array << Card.find(params[:array][2])
 
     result = deck.set_match?(new_card_array)
-
-    if request.xhr?
-      render json: { thing: result.to_s }
+    if result == true
+      # replace cards that made set by throwing new partial at screen with new cards
+      if request.xhr?
+        # render '_show-card'
+      else
+        redirect_to 'games/new'
+      end
     else
-      "poop"
+      # alert that it was not a set
     end
   end
 
