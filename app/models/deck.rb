@@ -7,16 +7,19 @@ class Deck
   end
 
   def make_deck
+    shapes = ["diamond", "oval", "squiggle"]
     colors = ["red", "green", "purple"]
-    fills = ["empty", "solid", "striped"]
+    fills = ["empty", "striped", "solid"]
     numbers = ["1", "2", "3"]
-    shapes = ["oval", "squiggle", "diamond"]
 
-    colors.each do |color|
-      fills.each do |fill|
-        numbers.each do |number|
-          shapes.each do |shape|
-            @cards << Card.create(color: color, shape: shape, number: number, fill: fill)
+    count = 0
+
+    shapes.each do |shape|
+      colors.each do |color|
+        fills.each do |fill|
+          numbers.each do |number|
+            count += 1
+            @cards << Card.create(color: color, shape: shape, number: number, fill: fill, url: 'card_' + count.to_s + '.png')
           end
         end
       end
