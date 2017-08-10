@@ -1,6 +1,6 @@
 $(document).ready(function() {
 // give section an id
-  $("section#just_for_fun").on("click", "li", function(e) {
+  $("section#board").on("click", "li", function(e) {
     e.preventDefault();
     if($(this).hasClass("selected")) {
       $(this).removeClass("selected");
