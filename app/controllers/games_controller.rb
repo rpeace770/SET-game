@@ -5,10 +5,24 @@ class GamesController < ApplicationController
   end
 
   def new
+    # if no user has logged in, then we need to create an anonymous account so that a game can be created
+    # if !current_user
+    #   random_user = AnonymousUserHelper.anonymous
+    #   session[:user_id] = random_user.id
+    # end
+    # no access to deck
+
     if session[:game_id]
+      binding.pry
       @game = Game.find(session[:game_id])
     else
-      @game = Game.new
+      if current_user
+        @game = Game.create!(:user_id => current_user.id )
+      else
+        freeloader = AnonymousUserHelper.anonymous
+        @game = Game.create!(:user_id => freeloader.id)
+      end
+
       session[:game_id] = @game.id
       deck = Deck.new
       deck.make_deck
