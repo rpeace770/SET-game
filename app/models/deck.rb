@@ -19,7 +19,7 @@ class Deck
         fills.each do |fill|
           numbers.each do |number|
             count += 1
-            @cards << Card.create(color: color, shape: shape, number: number, fill: fill, url: "set_cards/card_" + count.to_s + ".png")
+            @cards << Card.create(color: color, shape: shape, number: number, fill: fill, url: 'card_' + count.to_s + '.png')
           end
         end
       end
