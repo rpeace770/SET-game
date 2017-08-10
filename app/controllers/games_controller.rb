@@ -13,7 +13,6 @@ class GamesController < ApplicationController
       deck = Deck.new
       deck.make_deck
       @current_cards = deck.draw_cards(12)
-
       # possibly add error functionality
 
       # make a partial that uses each card in the cells table
@@ -31,11 +30,17 @@ class GamesController < ApplicationController
   end
 
   def create
-    # respond_to do |format|
-    #   format.js
-    # end
+    binding.pry
+    new_card_array = []
+
+    new_card_array << Card.find(params[:array][0])
+    new_card_array << Card.find(params[:array][1])
+    new_card_array << Card.find(params[:array][2])
+
+    result = deck.set_match?(new_card_array)
+
     if request.xhr?
-      render json: { thing: "pooper" }
+      render json: { thing: result.to_s }
     else
       "poop"
     end

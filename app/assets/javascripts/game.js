@@ -1,6 +1,6 @@
 $(document).ready(function() {
 // give section an id
-  $("section#just_for_fun").on("click", "li", function(e) {
+  $("section#board").on("click", "li", function(e) {
     e.preventDefault();
     if($(this).hasClass("selected")) {
       $(this).removeClass("selected");
@@ -9,15 +9,22 @@ $(document).ready(function() {
     }
 
   var total = $(".selected").length
+  var ids = $(".selected");
 
   if (total === 3) {
+
+  var array_of_ids = [ids[0].id, ids[1].id, ids[2].id]
+
+  $("li").removeClass("selected");
+
       $.ajax({
         url: "/games",
         type: "post",
-        data: total
+        dataType: 'json',
+        data: {array: array_of_ids}
       })
       .done(function(response){
-        alert(response);
+        alert(response.thing);
       })
       .fail(function(response) {
         alert(response.responseText);
