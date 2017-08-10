@@ -7,9 +7,19 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
+<style>
+a{
+    font-family: Arial, Helvetica, sans-serif;}
+a:active{
+   color: white;
 
+}
+a:visited{
+  color:#00cc99;
+}
+</style>
 <body>
-  <ul class="c-nav c-nav--inline">
+  <ul class="c-nav c-nav--inline" >
     <li class="c-nav__item"><%= link_to "Home", '/' %></li>
     <% if user_signed_in? %>
       <li class="c-nav__item"><%= link_to current_user.username, current_user %></li>
