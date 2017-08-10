@@ -47,7 +47,6 @@ class GamesController < ApplicationController
   end
 
   def checker
-    binding.pry
     if @deck.no_sets_left(@current_cards)
       if @current_cards.length == 12
         @deck.draw_cards(3)
