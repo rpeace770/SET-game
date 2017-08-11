@@ -40,22 +40,36 @@ class GamesController < ApplicationController
   end
 
   def create
+
     new_card_array = []
 
-    new_card_array << Card.find(params[:array][0])
-    new_card_array << Card.find(params[:array][1])
-    new_card_array << Card.find(params[:array][2])
+    new_card_array << Card.find(params[:array][0].to_i)
+    new_card_array << Card.find(params[:array][1].to_i)
+    new_card_array << Card.find(params[:array][2].to_i)
+
+    # testing purposes
+    deck = Deck.new
+    deck.make_deck
+    # testing purposes
 
     result = deck.set_match?(new_card_array)
     if result == true
-      # replace cards that made set by throwing new partial at screen with new cards
+      new_cards = deck.draw_cards(3)
+      # take the three positions and replace with draw card objects
       if request.xhr?
-        # render '_show-card'
+        # render partial show-card', card: new_cards[0] %>
+        render :json => {thing: "You made a set!", ids: [new_cards[0].id, new_cards[1].id, new_cards[2].id], urls: [new_cards[0].url, new_cards[1].url, new_cards[2].url]}
       else
         redirect_to 'games/new'
       end
     else
-      # alert that it was not a set
+      if request.xhr?
+        render json: {
+          error: "FUCK"
+        }, status: :not_found
+      else
+        redirect_to 'games/new'
+      end
     end
   end
 
