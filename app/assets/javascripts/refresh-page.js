@@ -1,19 +1,20 @@
+// window.addEventListener("load", function load(event){
+//   alert("refresh")
+//   console.log($(this));
+// })
 
+$(document).ready(function() {
 
-
-$(document).ready(function(){
-
-  $("button#no-set").on('click', function(event) {
-    event.preventDefault();
-    console.log("shiet");
-
+  if ( document.getElementById("board") != null) {
+    alert('board exists');
+debugger;
     var ids = new Array();
     $("li.card").each(function(index) {
     ids.push($(this).attr('id'));
         });
 
     $.ajax({
-      url: "/games/checker",
+      url: "/games/new",
       type: "get",
       dataType: 'json',
       data: { card_ids: ids }
@@ -29,7 +30,6 @@ $(document).ready(function(){
     .always(function(){
       console.log("moo");
     })
-  });
-
+  }
 
 });
