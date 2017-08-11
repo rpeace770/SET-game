@@ -14,7 +14,6 @@ $(document).ready(function() {
   if (total === 3) {
 
   var array_of_ids = [ids[0].id, ids[1].id, ids[2].id]
-
   $("li").removeClass("selected");
 
       $.ajax({
@@ -24,10 +23,18 @@ $(document).ready(function() {
         data: {array: array_of_ids}
       })
       .done(function(response){
+
+        for(var i = 0; i < 3; i++) {
+        var new_list_partial = "<li class='card' id=" + response.ids[i] + "><button class='c-button c-button--info'><img src='/assets/" + response.urls[i] + "'></button></li>"
+        // find the list item with first array id
+        var found_list_item = $("ul").find("li#" + array_of_ids[i]);
+        $(found_list_item).replaceWith(new_list_partial);
+        // debugger;
+        }
         alert(response.thing);
       })
       .fail(function(response) {
-        alert(response.responseText);
+        alert("Fuck no");
       })
       .always(function(){
         console.log("moo");
