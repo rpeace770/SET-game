@@ -7,11 +7,18 @@ class GamesController < ApplicationController
   def new
 
     if session[:game_id]
-      binding.pry
+      # want to redisplay current cards on board
+
       game = Game.find(session[:game_id])
       deck = game.deck
-      @current_cards = deck.cards
+
+      cards_on_display = []
+      params[:card_ids].each { |card_id| cards_on_display << Card.find(card_id) }
+      @current_cards = cards_on_display
+
+      # @current_cards = deck.cards
       # this needs work
+      # printing bigger board
       binding.pry
     else
       if current_user
