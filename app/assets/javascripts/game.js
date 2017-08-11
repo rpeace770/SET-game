@@ -30,6 +30,9 @@ $(document).ready(function() {
         var found_list_item = $("ul").find("li#" + array_of_ids[i]);
         $(found_list_item).replaceWith(new_list_partial);
         }
+
+        $("#set-count").html("Sets made: " + response.sets_made);
+
         alert(response.thing);
       })
       .fail(function(response) {

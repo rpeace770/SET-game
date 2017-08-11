@@ -64,7 +64,7 @@ class GamesController < ApplicationController
         @game.sets += 1
         @game.save
         if request.xhr?
-          render :json => {thing: "You made a set!", ids: [new_cards[0].id, new_cards[1].id, new_cards[2].id], urls: [new_cards[0].url, new_cards[1].url, new_cards[2].url]}
+          render :json => {thing: "You made a set!", ids: [new_cards[0].id, new_cards[1].id, new_cards[2].id], urls: [new_cards[0].url, new_cards[1].url, new_cards[2].url], sets_made: @game.sets}
         else
           redirect_to 'games/new'
         end
