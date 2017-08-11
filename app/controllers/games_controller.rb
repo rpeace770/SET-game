@@ -5,6 +5,7 @@ class GamesController < ApplicationController
   end
 
   def new
+    #binding.pry
     if session[:game_id]
       # want to redisplay current cards on board
 
@@ -61,12 +62,15 @@ class GamesController < ApplicationController
       new_card_array << Card.find(params[:array][0].to_i)
       new_card_array << Card.find(params[:array][1].to_i)
       new_card_array << Card.find(params[:array][2].to_i)
+      new_card_array.each do |card|
+        card.destroy
+      end
       result = @game.deck.set_match?(new_card_array)
 
       if result == true
         new_cards = @game.deck.draw_cards(3)
-        binding.pry
         @game.sets += 1
+        @game.save
         if request.xhr?
           render :json => {thing: "You made a set!", ids: [new_cards[0].id, new_cards[1].id, new_cards[2].id], urls: [new_cards[0].url, new_cards[1].url, new_cards[2].url]}
         else

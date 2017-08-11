@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170811161740) do
     t.integer  "deck_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_cards_on_deck_id", using: :btree
   end
 
   create_table "decks", force: :cascade do |t|
@@ -34,11 +35,11 @@ ActiveRecord::Schema.define(version: 20170811161740) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.integer  "sets"
+    t.integer  "sets",       default: 0
     t.datetime "end_time"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,5 +60,4 @@ ActiveRecord::Schema.define(version: 20170811161740) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "decks", "games"
 end

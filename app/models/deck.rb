@@ -111,8 +111,4 @@ class Deck < ApplicationRecord
 
 end
 
-# deck = Deck.new
-# deck.make_deck
-# x = deck.draw_cards(12)
-# y = deck.no_sets_left(x)
 
