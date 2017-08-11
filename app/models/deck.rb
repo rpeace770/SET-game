@@ -31,7 +31,13 @@ class Deck < ApplicationRecord
 # this returns the cards that are on the game board
   def draw_cards(number)
     shuffled_cards = self.cards.to_a.shuffle!
-    return shuffled_cards.slice!(0, number)
+    shuffled = shuffled_cards.slice!(0, number)
+    delete_cards(shuffled)
+    return shuffled
+  end
+
+  def delete_cards(card_array)
+    self.cards -= card_array
   end
 
   def set_match?(array)

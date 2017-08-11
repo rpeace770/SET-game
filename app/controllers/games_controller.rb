@@ -32,10 +32,10 @@ class GamesController < ApplicationController
         game.save
         session[:user_id] = freeloader.id
       end
-      session[:game_id] = game.id
-      deck = Deck.new
-      deck.game = game
-      deck.save
+    session[:game_id] = game.id
+    deck = Deck.new
+    deck.game = game
+    deck.save
 
       MakeDeckHelper.make_cards(deck)
       @current_cards = deck.draw_cards(12)
@@ -62,11 +62,7 @@ class GamesController < ApplicationController
       new_card_array << Card.find(params[:array][0].to_i)
       new_card_array << Card.find(params[:array][1].to_i)
       new_card_array << Card.find(params[:array][2].to_i)
-      new_card_array.each do |card|
-        card.destroy
-      end
       result = @game.deck.set_match?(new_card_array)
-
       if result == true
         new_cards = @game.deck.draw_cards(3)
         @game.sets += 1
@@ -90,7 +86,6 @@ class GamesController < ApplicationController
 
   def checker
     # from ajax, get card ids and find Card
-
     cards_on_display = []
     params[:card_ids].each { |card_id| cards_on_display << Card.find(card_id) }
 
