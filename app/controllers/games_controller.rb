@@ -61,6 +61,7 @@ class GamesController < ApplicationController
 
   def checker
     # from ajax, get card ids and find Card
+    binding.pry
     if deck.no_sets_left(@current_cards)
       if @current_cards.length == 12
         deck.draw_cards(3)

@@ -22,6 +22,14 @@
   box-sizing: border-box;
 }
 
+/*html {
+  height: 100%;
+  background-color: #32bb7d;
+  background: url(/public/images/science.png);
+  background-attachment: fixed;
+  line-height: 1.4;
+}*/
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
