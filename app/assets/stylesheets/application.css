@@ -75,7 +75,8 @@ button {
   display: block;
   width: 33%;
   float: left;
-  height: 159px;
+  /* fix height */
+  height: 0px;
   padding-bottom: 25%;
   background-color: #c8c8c8;
   margin: 0;
