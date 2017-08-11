@@ -29,6 +29,7 @@ class Deck < ApplicationRecord
   # end
 
 # this returns the cards that are on the game board
+# need to
   def draw_cards(number)
     shuffled_cards = self.cards.to_a.shuffle!
     return shuffled_cards.slice!(0, number)
@@ -82,6 +83,7 @@ class Deck < ApplicationRecord
   def replace_cards(displayed_cards)
     displayed_cards.pop(3)
     displayed_cards << draw_cards(3)
+    displayed_cards.flatten
   end
   # user click button thinking there are no more sets
   # if there are no more sets, like the user thinks, then we need to add 3 more cards if there are 12

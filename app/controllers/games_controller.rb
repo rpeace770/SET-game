@@ -7,19 +7,12 @@ class GamesController < ApplicationController
   def new
 
     if session[:game_id]
-      # want to redisplay current cards on board
-
       game = Game.find(session[:game_id])
       deck = game.deck
 
       cards_on_display = []
-      params[:card_ids].each { |card_id| cards_on_display << Card.find(card_id) }
+      session[:card_ids].each { |card_id| cards_on_display << Card.find(card_id) }
       @current_cards = cards_on_display
-
-      # @current_cards = deck.cards
-      # this needs work
-      # printing bigger board
-      binding.pry
     else
       if current_user
         game = Game.new
@@ -38,6 +31,12 @@ class GamesController < ApplicationController
 
       MakeDeckHelper.make_cards(deck)
       @current_cards = deck.draw_cards(12)
+
+      current_card_ids = []
+      @current_cards.each do |card|
+        current_card_ids << card.id
+      end
+      session[:card_ids] = current_card_ids
     end
 
     # possibly add error functionality
@@ -64,11 +63,6 @@ class GamesController < ApplicationController
     new_card_array << Card.find(params[:array][1].to_i)
     new_card_array << Card.find(params[:array][2].to_i)
 
-    # testing purposes
-    deck = Deck.new
-    deck.make_deck
-    # testing purposes
-
     result = deck.set_match?(new_card_array)
     if result == true
       new_cards = deck.draw_cards(3)
@@ -90,27 +84,45 @@ class GamesController < ApplicationController
     end
   end
 
-  def checker
-    # from ajax, get card ids and find Card
-
+  def twelve
     cards_on_display = []
     params[:card_ids].each { |card_id| cards_on_display << Card.find(card_id) }
 
     game = Game.find(session[:game_id])
     deck = game.deck
-    binding.pry
-    if deck.no_sets_left(cards_on_display)
-      if cards_on_display.length == 12
-        deck.draw_cards(3)
-      elsif cards_on_display.length == 15
-        deck.replace_cards(cards_on_display)
-      else
-        puts "Something is wrong."
+
+    # if deck.no_sets_left(cards_on_display)
+      partials = []
+      deck.draw_cards(3).each do |card|
+        partials << render_to_string(partial: '/games/show-card', locals: { card: card })
       end
-    else # if there are sets available
-      "YOU'RE STUPID"
-    end
+      render :json => { partials: partials }.to_json
+    # else
+    #   render :json => { message: "There are still sets. Look harder!" }.to_json
+    # end
   end
+
+  def fifteen
+    cards_on_display = []
+    params[:card_ids].each { |card_id| cards_on_display << Card.find(card_id) }
+
+    game = Game.find(session[:game_id])
+    deck = game.deck
+
+    # if deck.no_sets_left(cards_on_display)
+      partials = []
+      blah = deck.replace_cards(cards_on_display)
+      blah.each do |card|
+        partials << render_to_string(partial: '/games/show-card', locals: { card: card })
+      end
+      render :json => { partials: partials }.to_json
+    # else
+    #  render :json => { message: "There are still sets. Look harder!" }.to_json
+    # end
+  end
+
+
+
 
   def show
     @game = Game.find(params[:id])
