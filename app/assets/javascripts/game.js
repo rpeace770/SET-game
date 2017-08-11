@@ -1,5 +1,5 @@
 $(document).ready(function() {
-// give section an id
+
   $("section#board").on("click", "li", function(e) {
     e.preventDefault();
     if($(this).hasClass("selected")) {
@@ -25,12 +25,14 @@ $(document).ready(function() {
       .done(function(response){
 
         for(var i = 0; i < 3; i++) {
-        var new_list_partial = "<li class='card' id=" + response.ids[i] + "><button class='c-button c-button--info'><img src='/assets/" + response.urls[i] + "'></button></li>"
-        // find the list item with first array id
+        var new_list_partial = "<li class='card' id=" + response.ids[i] + "><img src='/assets/" + response.urls[i] + "'></li>"
+
         var found_list_item = $("ul").find("li#" + array_of_ids[i]);
         $(found_list_item).replaceWith(new_list_partial);
-        // debugger;
         }
+
+        $("#set-count").html("Sets made: " + response.sets_made);
+
         alert(response.thing);
       })
       .fail(function(response) {
