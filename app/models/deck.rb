@@ -60,8 +60,8 @@ class Deck < ApplicationRecord
     return false if new_array.length == 2
   end
 
-  def finished?
-    return true if no_sets_left && self.cards.length < 3
+  def finished?(displayed_cards)
+    return true if no_sets_left(displayed_cards) && self.cards.length < 3
   end
 
   def no_sets_left(displayed_cards)

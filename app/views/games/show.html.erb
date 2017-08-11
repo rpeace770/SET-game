@@ -1,8 +1,9 @@
 <h1>Game Stats</h1>
 
 <% user = GameHelper.find_user(@game) %>
-<%= user.username %>
+<%= current_user.username %>
 <%= @game.sets %>
 <%= @game.total_time %>
 
 <!-- Need Play again button -->
+<button class="c-button u-super" style= "background-color:#2966a3;" ><%= link_to "play AGAIN!", new_game_path %></button>
