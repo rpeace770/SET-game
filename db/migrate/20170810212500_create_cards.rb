@@ -6,7 +6,7 @@ class CreateCards < ActiveRecord::Migration[5.0]
       t.string    :number
       t.string    :shape
       t.string    :url
-      t.references  :deck, foreign_key: true
+      t.references  :deck
 
       t.timestamps
     end
