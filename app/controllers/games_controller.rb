@@ -5,9 +5,8 @@ class GamesController < ApplicationController
   end
 
   def new
-    #binding.pry
+
     if session[:game_id]
-      # want to redisplay current cards on board
 
       game = Game.find(session[:game_id])
       deck = game.deck
@@ -16,9 +15,6 @@ class GamesController < ApplicationController
       session[:card_ids].each { |card_id| cards_on_display << Card.find(card_id) }
       @current_cards = cards_on_display
 
-      # @current_cards = deck.cards
-      # this needs work
-      # printing bigger board
     else
       if current_user
         game = Game.new
@@ -85,7 +81,7 @@ class GamesController < ApplicationController
   end
 
   def checker
-    # from ajax, get card ids and find Card
+
     cards_on_display = []
     params[:card_ids].each { |card_id| cards_on_display << Card.find(card_id) }
 
@@ -99,7 +95,7 @@ class GamesController < ApplicationController
       else
         puts "Something is wrong."
       end
-    else # if there are sets available
+    else
       "YOU'RE STUPID"
     end
   end
