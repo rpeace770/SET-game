@@ -55,6 +55,7 @@ class GamesController < ApplicationController
     result = deck.set_match?(new_card_array)
     if result == true
       new_cards = deck.draw_cards(3)
+      # current_user.sets += 1
       # take the three positions and replace with draw card objects
       if request.xhr?
         # render partial show-card', card: new_cards[0] %>
