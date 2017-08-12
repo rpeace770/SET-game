@@ -26,7 +26,7 @@ $(document).ready(function(){
           alert(response.message)
         }
       })
-    } else {
+    } else if ( ids.length === 15 ) {
       $.ajax({
         url: "/games/fifteen",
         type: "get",
@@ -38,11 +38,9 @@ $(document).ready(function(){
           for(var i = 0; i < 3; i ++) {
           $("ul.cells").append(response.partials[i])
         }
-
           for(var i = 0; i < 3; i ++) {
           $($("li.card")[i]).remove();
         }
-
       } else {
         alert(response.message)
       }
@@ -53,11 +51,17 @@ $(document).ready(function(){
       .always(function(){
         console.log("moo");
       })
-
-
-
-
-
+    } else {
+      // when the board is < 12
+      $.ajax({
+        url: "/games/nine",
+        type: "get",
+        dataType: 'json',
+        data: { card_ids: ids }
+      })
+      .done(function(response){
+        $(body).html(response)
+      });
     }
   });
 

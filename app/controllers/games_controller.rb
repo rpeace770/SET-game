@@ -5,7 +5,6 @@ class GamesController < ApplicationController
   end
 
   def new
-
     if session[:game_id]
       game = Game.find(session[:game_id])
       deck = game.deck
@@ -51,7 +50,13 @@ class GamesController < ApplicationController
     if @game.deck.finished?(@current_cards)
       @game.end_time = Time.now
       session[:game_id] = nil
-      redirect_to game_path(@game)
+      if request.xhr?
+        # render :json => { partial: "_show-whole" }
+        render :json => { :attachmentPartial => render_to_string('_show-whole', :layout => false, :locals => { :game => @game }) }
+        # render partial: "_show-whole", locals: { game: @game }
+      else
+        redirect_to game_path(@game)
+      end
     else
       new_card_array = []
       new_card_array << Card.find(params[:array][0].to_i)
@@ -77,6 +82,7 @@ class GamesController < ApplicationController
           redirect_to 'game/new'
         end
       elsif result == true && @current_cards.length <= 12 && @game.deck.cards.count == 0
+        session[:card_ids] -= params[:array]
         @game.sets += 1
         @game.save
         if request.xhr?
@@ -141,9 +147,24 @@ class GamesController < ApplicationController
     end
   end
 
+  def nine
+    cards_on_display = []
+    cards_on_display_ids = []
+    params[:card_ids].each { |card_id| cards_on_display << Card.find(card_id) }
+
+    game = Game.find(session[:game_id])
+    deck = game.deck
+
+    if deck.no_sets_left(cards_on_display)
+      render :json => { :attachmentPartial => render_to_string('_show-whole', :layout => false, :locals => { :game => game }) }
+    else
+     render :json => { message: "There are still sets. Look harder!" }.to_json
+    end
+  end
+
 
   def show
-    @game = Game.find(params[:id])
+    @game = Game.find(session[:game_id])
   end
 
 end
