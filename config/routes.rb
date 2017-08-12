@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   resources :games do
     collection do
-      get :checker
+      get :twelve
+      get :fifteen
     end
   end
 

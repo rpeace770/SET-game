@@ -3,6 +3,7 @@ class Deck < ApplicationRecord
   belongs_to :game, dependent: :destroy
   has_many :cards
 
+
   def draw_cards(number)
     shuffled_cards = self.cards.to_a.shuffle!
     shuffled = shuffled_cards.slice!(0, number)
@@ -58,6 +59,7 @@ class Deck < ApplicationRecord
   def replace_cards(displayed_cards)
     displayed_cards.pop(3)
     displayed_cards << draw_cards(3)
+    displayed_cards.flatten
   end
 
 end
