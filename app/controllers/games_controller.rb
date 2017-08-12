@@ -69,7 +69,8 @@ class GamesController < ApplicationController
           redirect_to 'games/new'
         end
       elsif result == true && @current_cards.length == 15
-        deck.delete_cards(new_card_array)
+        session[:card_ids] -= params[:array]
+        @game.deck.delete_cards(new_card_array)
         if request.xhr?
           render :json => {thing: "You made a set!", sets_made: @game.sets}
         else
