@@ -1,9 +1,9 @@
 <h1>Game Stats</h1>
 
-<% user = GameHelper.find_user(game) %>
+<% user = GameHelper.find_user(@game) %>
 <%= user.username %>
-<%= game.sets %>
-<%= game.total_time %>
+<%= @game.sets %>
+<%= @game.total_time %>
 
 <!-- Need Play again button -->
 <% if current_user == user %>

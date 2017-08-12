@@ -164,7 +164,7 @@ class GamesController < ApplicationController
 
 
   def show
-    @game = Game.find(session[:game_id])
+    @game = Game.find(params[:id])
   end
 
 end
