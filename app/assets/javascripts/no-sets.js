@@ -1,6 +1,3 @@
-
-
-
 $(document).ready(function(){
 
   $("button#no-set").on('click', function(event) {
