@@ -114,12 +114,12 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
-/*.card.selected {
-  border: solid green 3px;
-}*/
+.card.selected {
+  border: solid red 5px;
+}
 
 .cells {
   margin: 0 auto;
