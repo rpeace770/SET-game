@@ -41,13 +41,16 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara', "~> 2.5"
   gem 'launchy'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec', require: false
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'rspec-collection_matchers'
   gem 'rails-controller-testing'
   gem 'pry-rails'
+end
+
+group :test, :darwin do
+  gem 'rb-fsevent'
 end
 
 group :development do
