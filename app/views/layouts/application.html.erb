@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="https://unpkg.com/blaze">
   <%= stylesheet_link_tag    'https://s3.us-east-2.amazonaws.com/set-game-gals/application.css', media: 'all' %>
   <%= javascript_include_tag 'https://s3.us-east-2.amazonaws.com/set-game-gals/application.js' %>
+  <%= javascript_include_tag 'https://s3.us-east-2.amazonaws.com/set-game-gals/game.js' %>
+  <%= javascript_include_tag 'https://s3.us-east-2.amazonaws.com/set-game-gals/no-sets.js' %>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 </style>
@@ -23,7 +25,7 @@ a:visited{
 }
 
 body {
-  background-image: <%= image_tag("whale-shark1.jpg") %>;
+  background-image: <%= image_tag("https://s3.us-east-2.amazonaws.com/set-game-gals/whale-shark1.jpg") %>;
 }
 </style>
 <body>
