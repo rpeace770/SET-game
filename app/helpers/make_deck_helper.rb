@@ -15,7 +15,7 @@ module MakeDeckHelper
         fills.each do |fill|
           numbers.each do |number|
             count += 1
-            cards << Card.create(color: color, shape: shape, number: number, fill: fill, url: 'card_' + count.to_s + '.png', deck_id: deck.id)
+            cards << Card.create(color: color, shape: shape, number: number, fill: fill, url: 'http://d1cc9y4cl9mzq4.cloudfront.net/card_' + count.to_s + '.png', deck_id: deck.id)
           end
         end
       end
