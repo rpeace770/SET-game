@@ -93,7 +93,7 @@ class GamesController < ApplicationController
       else
         if request.xhr?
           render json: {
-            error: "FUCK"
+            error: "AAAHHH"
             }, status: :not_found
         else
           redirect_to 'games/new'
