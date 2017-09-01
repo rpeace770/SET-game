@@ -8,12 +8,12 @@ $(document).ready(function() {
       $(this).addClass("selected");
     }
 
-  var total = $(".selected").length
+  var total = $(".selected").length;
   var ids = $(".selected");
 
   if (total === 3) {
 
-  var array_of_ids = [ids[0].id, ids[1].id, ids[2].id]
+  var array_of_ids = [ids[0].id, ids[1].id, ids[2].id];
 
       $.ajax({
         url: "/games",
@@ -24,7 +24,7 @@ $(document).ready(function() {
       .done(function(response){
         if(response.ids) {
           for(var i = 0; i < 3; i++) {
-          var new_list_partial = "<li class='card' id=" + response.ids[i] + "><img src='/assets/" + response.urls[i] + "'></li>"
+          var new_list_partial = "<li class='card' id=" + response.ids[i] + "><img src='/assets/" + response.urls[i] + "'></li>";
 
           var found_list_item = $("ul").find("li#" + array_of_ids[i]);
           $(found_list_item).replaceWith(new_list_partial);
@@ -40,11 +40,8 @@ $(document).ready(function() {
       })
       .fail(function(response) {
         $("li").removeClass("selected");
-        alert("Fuck no");
-      })
-      .always(function(){
-        console.log("moo");
-      })
+        alert("nope");
+      });
     }
   });
 });
