@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   $("section#board").on("click", "li", function(e) {
     e.preventDefault();
+    console.log("helloooooo")
     if($(this).hasClass("selected")) {
       $(this).removeClass("selected");
     } else {
